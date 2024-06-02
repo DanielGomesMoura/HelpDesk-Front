@@ -16,7 +16,7 @@
         </div>
         </div>
         <div class="3">
-          <button [disabled]="!validaCampos()" mat-flat-button color="primary">Entrar</button>
+          <button (click)="logar()" [disabled]="!validaCampos()" mat-flat-button color="primary">Entrar</button>
         </div>
       </form>
 </div>
