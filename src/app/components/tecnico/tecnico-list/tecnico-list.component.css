@@ -6,3 +6,16 @@ margin: 1rem auto auto auto;
 table{
     width: 100%;
 }
+
+mat-form-field{
+width: 100%;
+}
+
+button{
+    width: 11rem;
+}
+
+h1{
+    width: 100%;
+    text-align: center;
+}
