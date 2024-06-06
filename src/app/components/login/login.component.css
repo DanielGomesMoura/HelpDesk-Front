@@ -9,15 +9,17 @@
 .form{
     width: 20rem;
     margin: auto;
-    background-color: rgb(235, 235, 235);
     padding: 1rem 1rem;
+    background: transparent;
     border-radius: 1rem;
+    backdrop-filter: blur(20px);
 }
 
 h1{
     padding-top: 1rem;
     width: 100%;
     text-align: center;
+    color: white;
 }
 
 .full-width{
@@ -28,4 +30,22 @@ img{
     height: 8rem;
     width: 100%;
     margin: 1.5rem auto 1.5rem auto;
+}
+
+input{
+    color: white;
+}
+
+mat-label{
+    color: white;
+}
+
+mat-icon{
+    color: white;
+}
+
+.botao-salvar button{
+    width: 20rem;
+    border-radius: 2rem;
+    color: white;
 }

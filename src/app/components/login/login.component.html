@@ -7,15 +7,19 @@
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>E-mail</mat-label>
           <input [formControl]="email" required [(ngModel)]="cred.email" name="email" matInput placeholder="Digite aqui seu email">
+          <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
 
         <mat-form-field class="full-width" appearance="fill">
             <mat-label>Senha</mat-label>
-            <input [formControl]="senha" required [(ngModel)]="cred.senha" name="senha" type="password" matInput placeholder="Ex. 123">
+            <input [formControl]="senha" required [(ngModel)]="cred.senha" name="senha" type="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Ex. 123">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
           </mat-form-field>
         </div>
         </div>
-        <div class="3">
+        <div class="botao-salvar">
           <button (click)="logar()" [disabled]="!validaCampos()" mat-flat-button color="primary">Entrar</button>
         </div>
       </form>

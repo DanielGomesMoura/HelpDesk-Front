@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     senha: ''
   }
 
+  hide = true;
   email = new FormControl(null,Validators.email);
   senha = new FormControl(null,Validators.minLength(3));
 
