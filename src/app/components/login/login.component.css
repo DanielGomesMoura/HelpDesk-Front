@@ -1,6 +1,9 @@
 .container{
     height: 100%;
-    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(37,97,207,1) 0%, rgba(0,212,255,1) 100%);
+    background-image: url("../../../assets/images/area.jpeg");
+    background-size: cover; /* Ajusta a imagem para cobrir completamente o elemento */
+    background-position: center; /* Centraliza a imagem no elemento */
+    /*background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(37,97,207,1) 0%, rgba(0,212,255,1) 100%);*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,6 +39,20 @@ input{
     color: white;
 }
 
+input::placeholder{
+    color: rgba(255, 255, 255, 0.875);
+
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 mat-label{
     color: white;
 }
@@ -48,4 +65,18 @@ mat-icon{
     width: 20rem;
     border-radius: 2rem;
     color: white;
+}
+
+mat-checkbox{
+    color: white;
+    margin-bottom: 1rem;
+}
+
+a{
+    color: white;
+}
+
+.lembar{
+    display: flex;
+    justify-content: space-between;
 }
