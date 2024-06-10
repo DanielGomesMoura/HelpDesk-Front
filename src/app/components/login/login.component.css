@@ -19,7 +19,6 @@
 }
 
 h1{
-    padding-top: 1rem;
     width: 100%;
     text-align: center;
     color: white;
@@ -32,7 +31,7 @@ h1{
 img{
     height: 8rem;
     width: 100%;
-    margin: 1.5rem auto 1.5rem auto;
+    margin: auto auto 1.5rem auto;
 }
 
 input{

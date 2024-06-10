@@ -42,7 +42,12 @@ export class TecnicoUpdateComponentComponent implements OnInit {
 
   findById(): void{
     this.service.findById(this.tecnico.id).subscribe(resposta =>{
-      console.log(resposta.perfis)
+      const roleMapping: { [key: string]: number } = {
+        "ADMIN": 0,
+        "TECNICO": 1,
+        "CLIENTE": 2,
+      };
+
       if(resposta.perfis.includes("ADMIN")){
       this.admin = true;
       }
@@ -52,16 +57,20 @@ export class TecnicoUpdateComponentComponent implements OnInit {
       if(resposta.perfis.includes("CLIENTE")){
         this.tec = true;
       }
+      // Converta os perfis para os índices
+      resposta.perfis = resposta.perfis.map(perfil => roleMapping[perfil]);
+
       this.tecnico = resposta
     })
   }
 
   update(): void {
-    this.service.create(this.tecnico).subscribe(resposta => {
+    this.service.update(this.tecnico).subscribe(() => {
       this.toast.success('Técnico atualizado com sucesso','Update');
       this.router.navigate(['tecnicos']);
     },ex => {
       if(ex.error.errors){
+        console.log("entrou aqui")
         ex.error.errors.forEach(element => {
           this.toast.error(element.message);
         });
@@ -74,6 +83,8 @@ export class TecnicoUpdateComponentComponent implements OnInit {
   addPerfis(event: any, perfil: any): void {
     if (event.checked) {
       this.tecnico.perfis.push(perfil);
+      console.log(this.tecnico.perfis)
+     
     } else {
       const index = this.tecnico.perfis.indexOf(perfil);
       if (index > -1) {
