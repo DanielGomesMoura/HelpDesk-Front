@@ -35,8 +35,15 @@ export class LoginComponent implements OnInit {
    })
   }
 
+  submitOnEnter(event: KeyboardEvent) {
+    console.log("entrou aqui")
+    event.preventDefault();
+    if (this.senha.valid && this.email.valid) {
+      this.logar();
+    }
+  }
+
   validaCampos(): boolean{
    return this.email.valid && this.senha.valid
   }
-
 }
