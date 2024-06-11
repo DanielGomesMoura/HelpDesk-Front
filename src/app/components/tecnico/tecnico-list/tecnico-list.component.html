@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Lista de Técnicos</h1>
-  <button routerLink="create" class="mat-elevation-z8" mat-raised-button color="primary">
+  <button routerLink="create" class="create mat-elevation-z8" mat-raised-button color="primary">
     <mat-icon style="width: 20%;">add_circle</mat-icon>
     Cadastrar Técnico</button>
   <mat-form-field appearance="standard">
@@ -33,12 +33,12 @@
           <ng-container matColumnDef="acoes">
             <th mat-header-cell *matHeaderCellDef> AÇÕES </th>
             <td mat-cell *matCellDef="let element"> 
-              <a routerLink="update/{{element.id}}">
-                <i class="material-icons edit">edit</i>
-              </a>
-              <a routerLink="">
-                <i class="material-icons delete">delete</i>
-              </a>
+              <button routerLink="update/{{element.id}}" mat-icon-button>
+                <mat-icon class="edit">edit</mat-icon>
+            </button>
+              <button (click)="delete(element)" mat-icon-button>
+                <mat-icon class="delete">delete</mat-icon>
+              </button>
            </td>
           </ng-container>
       

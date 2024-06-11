@@ -44,18 +44,18 @@ export class TecnicoUpdateComponentComponent implements OnInit {
     this.service.findById(this.tecnico.id).subscribe(resposta =>{
       const roleMapping: { [key: string]: number } = {
         "ADMIN": 0,
-        "TECNICO": 1,
-        "CLIENTE": 2,
+        "CLIENTE": 1,
+        "TECNICO": 2,
       };
 
       if(resposta.perfis.includes("ADMIN")){
       this.admin = true;
       }
       if(resposta.perfis.includes("TECNICO")){
-        this.cliente = true;
+        this.tec = true;
       }
       if(resposta.perfis.includes("CLIENTE")){
-        this.tec = true;
+        this.cliente = true;
       }
       // Converta os perfis para os índices
       resposta.perfis = resposta.perfis.map(perfil => roleMapping[perfil]);
@@ -70,7 +70,6 @@ export class TecnicoUpdateComponentComponent implements OnInit {
       this.router.navigate(['tecnicos']);
     },ex => {
       if(ex.error.errors){
-        console.log("entrou aqui")
         ex.error.errors.forEach(element => {
           this.toast.error(element.message);
         });

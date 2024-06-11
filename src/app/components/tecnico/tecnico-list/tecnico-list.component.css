@@ -11,7 +11,7 @@ mat-form-field{
 width: 100%;
 }
 
-button{
+.create{
     width: 11rem;
 }
 
@@ -26,4 +26,8 @@ h1{
 
 .delete{
     color: rgb(248, 49, 49);
+}
+
+mat-icon-button{
+ padding-right: 1rem;
 }
