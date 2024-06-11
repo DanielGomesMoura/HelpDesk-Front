@@ -1,3 +1,3 @@
 export const API_CONFIG = { 
-    baseurl: 'http://localhost:8080'
+    baseurl: 'https://helpdesk-6ad0.onrender.com'
 }
