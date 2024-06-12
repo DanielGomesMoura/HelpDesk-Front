@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { Tecnico } from 'src/app/models/tecnico';
 import { TecnicoService } from 'src/app/services/tecnico.service';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 @Component({
   selector: 'app-tecnico-list',
   templateUrl: './tecnico-list.component.html',
@@ -29,7 +31,8 @@ export class TecnicoListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private service: TecnicoService,
-              private toast: ToastrService
+              private toast: ToastrService,
+              private dialog: MatDialog
              ) { }
 
   ngOnInit(): void {
@@ -56,16 +59,23 @@ export class TecnicoListComponent implements OnInit {
   }
 
   delete(tecnico: Tecnico): void{
-    this.service.delete(tecnico.id).subscribe(() =>{
-      this.toast.success('Técnico Deletado com sucesso','Delete');
-      this.findAll();
-    },ex => {
-      if(ex.error.errors){
-        ex.error.errors.forEach(element => {
-          this.toast.error(element.message);
-        });
-      }else{
-        this.toast.error(ex.error.message);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    data: "Tem certeza que deseja remover esse Técnico?",
+    });
+    dialogRef.afterClosed().subscribe( (resposta: boolean)=>{
+      if(resposta){
+        this.service.delete(tecnico.id).subscribe(() =>{
+          this.toast.success('Técnico Deletado com sucesso','Delete');
+          this.findAll();
+        },ex => {
+          if(ex.error.errors){
+            ex.error.errors.forEach(element => {
+              this.toast.error(element.message);
+            });
+          }else{
+            this.toast.error(ex.error.message);
+          }
+        })
       }
     })
   }
