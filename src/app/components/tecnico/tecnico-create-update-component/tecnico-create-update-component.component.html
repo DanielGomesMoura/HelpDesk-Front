@@ -1,12 +1,12 @@
 <div class="container mat-elevation-z8">
     <form class="form">
-        <h1 class="fullWidth">Cadastrar Técnico</h1>
+        <h1 class="fullWidth">Atualizar Técnico</h1>
         <img class="fullWidth" src="assets/images/tecnico-create.svg" alt="Help Desk - AdsSoftware">
 
         <section class="section">
-            <mat-checkbox (change)="addPerfis($event,0)" class="margin" color="primary">Administrador</mat-checkbox>
-            <mat-checkbox (change)="addPerfis($event,1)" class="margin" color="primary">Cliente</mat-checkbox>
-            <mat-checkbox (change)="addPerfis($event,2)" class="margin" color="primary">Técnico</mat-checkbox>
+            <mat-checkbox [checked]="admin"   (change)="addPerfis($event,0)" class="margin" color="primary">Administrador</mat-checkbox>
+            <mat-checkbox [checked]="cliente" (change)="addPerfis($event,1)" class="margin" color="primary">Cliente</mat-checkbox>
+            <mat-checkbox [checked]="tec"     (change)="addPerfis($event,2)" class="margin" color="primary">Técnico</mat-checkbox>
           </section>
 
           <mat-form-field appearance="legacy" class="fullWidth">
@@ -34,9 +34,9 @@
             <input [(ngModel)]="tecnico.senha" name="senha" [formControl]="senha" required type="password" matInput placeholder="ex..: 123">
             <mat-icon matSuffix>password</mat-icon>
           </mat-form-field>
-          <button (click)="create()" [disabled]="!validaCampos()" class="fullWidth mat-elevation-z4" mat-raised-button color="primary">
-            Cadastrar</button>
-            <button routerLink="../" class="fullWidth mat-elevation-z4" mat-raised-button color="warn">
+          <button (click)="save()" [disabled]="!validaCampos()" class="fullWidth mat-elevation-z4" mat-raised-button color="primary">
+            Atualizar</button>
+            <button routerLink="../../" class="fullWidth mat-elevation-z4" mat-raised-button color="warn">
                 Cancelar</button>
     </form>
     <p class="fullWidth">

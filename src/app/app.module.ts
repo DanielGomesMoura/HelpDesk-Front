@@ -33,9 +33,8 @@ import { TecnicoListComponent } from './components/tecnico/tecnico-list/tecnico-
 import { LoginComponent } from './components/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
-import { TecnicoCreateComponent } from './components/tecnico/tecnico-create/tecnico-create.component';
 import { NgxMaskModule } from 'ngx-mask';
-import { TecnicoUpdateComponentComponent } from './components/tecnico/tecnico-update-component/tecnico-update-component.component';
+import { TecnicoUpdateComponentComponent } from './components/tecnico/tecnico-create-update-component/tecnico-create-update-component.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -47,7 +46,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     HeaderComponent,
     TecnicoListComponent,
     LoginComponent,
-    TecnicoCreateComponent,
     TecnicoUpdateComponentComponent,
     ConfirmDialogComponent
   ],

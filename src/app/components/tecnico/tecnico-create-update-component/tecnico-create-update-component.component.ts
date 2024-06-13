@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tecnico } from './../../../models/tecnico';
+import { Tecnico } from '../../../models/tecnico';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -7,8 +7,8 @@ import { TecnicoService } from 'src/app/services/tecnico.service';
 
 @Component({
   selector: 'app-tecnico-update-component',
-  templateUrl: './tecnico-update-component.component.html',
-  styleUrls: ['./tecnico-update-component.component.css']
+  templateUrl: './tecnico-create-update-component.component.html',
+  styleUrls: ['./tecnico-create-update-component.component.css']
 })
 export class TecnicoUpdateComponentComponent implements OnInit {
 
@@ -36,8 +36,11 @@ export class TecnicoUpdateComponentComponent implements OnInit {
               private activatedRout: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.tecnico.id = this.activatedRout.snapshot.paramMap.get('id');
-    this.findById();
+    const id = this.activatedRout.snapshot.paramMap.get('id');
+    if(id){
+      this.tecnico.id = id
+      this.findById();
+    }
   }
 
   findById(): void{
@@ -64,9 +67,32 @@ export class TecnicoUpdateComponentComponent implements OnInit {
     })
   }
 
+  save(): void {
+    if (this.tecnico.id) {
+      this.update();
+    } else {
+      this.create();
+    }
+  }
+
   update(): void {
     this.service.update(this.tecnico).subscribe(() => {
       this.toast.success('Técnico atualizado com sucesso','Update');
+      this.router.navigate(['tecnicos']);
+    },ex => {
+      if(ex.error.errors){
+        ex.error.errors.forEach(element => {
+          this.toast.error(element.message);
+        });
+      }else{
+        this.toast.error(ex.error.message);
+      }
+    })
+  }
+
+  create(): void {
+    this.service.create(this.tecnico).subscribe(resposta => {
+      this.toast.success('Técnico cadastrado com sucesso');
       this.router.navigate(['tecnicos']);
     },ex => {
       if(ex.error.errors){
