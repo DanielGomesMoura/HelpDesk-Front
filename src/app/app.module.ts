@@ -39,7 +39,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { MatDialogModule } from '@angular/material/dialog';
 import { ClienteUpdateComponent } from './components/cliente/cliente-create-update-component/cliente-create-update-component.component';
 import { ClienteListComponent } from './components/cliente/cliente-list/cliente-list.component';
-import { ChamadoListComponent } from './componentes/chamado/chamado-list/chamado-list.component';
+import { ChamadoListComponent } from './components/chamado/chamado-list/chamado-list.component';
 
 @NgModule({
   declarations: [
