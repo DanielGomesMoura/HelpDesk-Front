@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Tecnico } from '../../../models/tecnico';
+import { Cliente } from '../../../models/cliente';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TecnicoService } from 'src/app/services/tecnico.service';
+import { ClienteService } from 'src/app/services/cliente.service';
 
 @Component({
-  selector: 'app-tecnico-update-component',
-  templateUrl: './tecnico-create-update-component.component.html',
-  styleUrls: ['./tecnico-create-update-component.component.css']
+  selector: 'app-cliente-update-component',
+  templateUrl: './cliente-create-update-component.component.html',
+  styleUrls: ['./cliente-create-update-component.component.css']
 })
-export class TecnicoUpdateComponent implements OnInit {
+export class ClienteUpdateComponent implements OnInit {
 
-  tecnico: Tecnico = {
+  cliente: Cliente = {
     id: '',
     nome: '',
     cpf: '',
@@ -22,7 +22,7 @@ export class TecnicoUpdateComponent implements OnInit {
     dataCriacao: ''
   }
   admin: boolean = false;
-  cliente: boolean = false;
+  cli: boolean = false;
   tec: boolean = false;
   isEditMode: boolean = false;
 
@@ -31,7 +31,7 @@ export class TecnicoUpdateComponent implements OnInit {
   email: FormControl = new FormControl(null, Validators.email)
   senha: FormControl = new FormControl(null, Validators.minLength(3))
 
-  constructor(private service: TecnicoService,
+  constructor(private service: ClienteService,
               private toast: ToastrService, 
               private router: Router,
               private activatedRout: ActivatedRoute) { }
@@ -39,14 +39,14 @@ export class TecnicoUpdateComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRout.snapshot.paramMap.get('id');
     if(id){
-      this.tecnico.id = id
+      this.cliente.id = id
       this.findById();
       this.isEditMode = true;
     }
   }
 
   findById(): void{
-    this.service.findById(this.tecnico.id).subscribe(resposta =>{
+    this.service.findById(this.cliente.id).subscribe(resposta =>{
       const roleMapping: { [key: string]: number } = {
         "ADMIN": 0,
         "CLIENTE": 1,
@@ -60,17 +60,17 @@ export class TecnicoUpdateComponent implements OnInit {
         this.tec = true;
       }
       if(resposta.perfis.includes("CLIENTE")){
-        this.cliente = true;
+        this.cli = true;
       }
       // Converta os perfis para os índices
       resposta.perfis = resposta.perfis.map(perfil => roleMapping[perfil]);
 
-      this.tecnico = resposta
+      this.cliente = resposta
     })
   }
 
   save(): void {
-    if (this.tecnico.id) {
+    if (this.cliente.id) {
       this.update();
     } else {
       this.create();
@@ -78,9 +78,9 @@ export class TecnicoUpdateComponent implements OnInit {
   }
 
   update(): void {
-    this.service.update(this.tecnico).subscribe(() => {
-      this.toast.success('Técnico atualizado com sucesso','Update');
-      this.router.navigate(['tecnicos']);
+    this.service.update(this.cliente).subscribe(() => {
+      this.toast.success('Cliente atualizado com sucesso','Update');
+      this.router.navigate(['clientes']);
     },ex => {
       if(ex.error.errors){
         ex.error.errors.forEach(element => {
@@ -93,9 +93,9 @@ export class TecnicoUpdateComponent implements OnInit {
   }
 
   create(): void {
-    this.service.create(this.tecnico).subscribe(resposta => {
-      this.toast.success('Técnico cadastrado com sucesso');
-      this.router.navigate(['tecnicos']);
+    this.service.create(this.cliente).subscribe(resposta => {
+      this.toast.success('Cliente cadastrado com sucesso');
+      this.router.navigate(['clientes']);
     },ex => {
       if(ex.error.errors){
         ex.error.errors.forEach(element => {
@@ -109,13 +109,13 @@ export class TecnicoUpdateComponent implements OnInit {
 
   addPerfis(event: any, perfil: any): void {
     if (event.checked) {
-      this.tecnico.perfis.push(perfil);
-      console.log(this.tecnico.perfis)
+      this.cliente.perfis.push(perfil);
+      console.log(this.cliente.perfis)
      
     } else {
-      const index = this.tecnico.perfis.indexOf(perfil);
+      const index = this.cliente.perfis.indexOf(perfil);
       if (index > -1) {
-        this.tecnico.perfis.splice(index, 1);
+        this.cliente.perfis.splice(index, 1);
       }
     }
   }

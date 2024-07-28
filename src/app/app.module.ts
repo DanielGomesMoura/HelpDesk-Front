@@ -34,9 +34,11 @@ import { LoginComponent } from './components/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { NgxMaskModule } from 'ngx-mask';
-import { TecnicoUpdateComponentComponent } from './components/tecnico/tecnico-create-update-component/tecnico-create-update-component.component';
+import { TecnicoUpdateComponent } from './components/tecnico/tecnico-create-update-component/tecnico-create-update-component.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ClienteUpdateComponent } from './components/cliente/cliente-create-update-component/cliente-create-update-component.component';
+import { ClienteListComponent } from './components/cliente/cliente-list/cliente-list.component';
 
 @NgModule({
   declarations: [
@@ -44,10 +46,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     NavComponent,
     HomeComponent,
     HeaderComponent,
-    TecnicoListComponent,
     LoginComponent,
-    TecnicoUpdateComponentComponent,
-    ConfirmDialogComponent
+    TecnicoListComponent,
+    TecnicoUpdateComponent,
+    ConfirmDialogComponent,
+    ClienteUpdateComponent,
+    ClienteListComponent
   ],
   imports: [
     BrowserModule,
